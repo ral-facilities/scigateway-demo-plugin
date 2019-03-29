@@ -4,10 +4,12 @@
   "private": true,
   "dependencies": {
     "@types/jest": "24.0.11",
+    "@types/loglevel": "^1.5.4",
     "@types/node": "11.11.6",
     "@types/react": "16.8.8",
     "@types/react-dom": "16.8.3",
     "@types/single-spa-react": "^2.8.3",
+    "loglevel": "^1.6.1",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-scripts": "2.1.8",
@@ -61,6 +63,7 @@
     ]
   },
   "devDependencies": {
+    "@types/enzyme": "^3.9.1",
     "@typescript-eslint/eslint-plugin": "^1.5.0",
     "@typescript-eslint/parser": "^1.5.0",
     "babel-loader": "^8.0.4",
