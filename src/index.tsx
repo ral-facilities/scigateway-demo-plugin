@@ -31,6 +31,18 @@ const reactLifecycles = singleSpaReact({
 // Single-SPA bootstrap methods have no idea what type of inputs may be
 // pushed down from the parent app
 export function bootstrap(props: any): Promise<void> {
+  // this is an example of a message being fired back to the
+  // parent and should be updated as part of the navigation story
+  const action = {
+    type: 'REGISTER_ROUTE',
+    payload: {
+      section: 'Data',
+      link: '/plugin1',
+      plugin: 'demo_plugin',
+    },
+  };
+  document.dispatchEvent(new CustomEvent('daaas-frontend', { detail: action }));
+
   return reactLifecycles.bootstrap(props);
 }
 
