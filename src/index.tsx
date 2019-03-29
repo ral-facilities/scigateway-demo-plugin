@@ -19,9 +19,9 @@ function domElementGetter(): HTMLElement {
 
 if (process.env.NODE_ENV === `development`) {
   ReactDOM.render(<App />, document.getElementById('demo_plugin'));
-  log.setDefaultLevel('debug');
+  log.setDefaultLevel(log.levels.DEBUG);
 } else {
-  log.setDefaultLevel('error');
+  log.setDefaultLevel(log.levels.ERROR);
 }
 
 const reactLifecycles = singleSpaReact({
