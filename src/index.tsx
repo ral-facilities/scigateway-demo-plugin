@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import singleSpaReact from 'single-spa-react';
+import TestBedComponent from './testbed/testbed.component';
 
 function domElementGetter(): HTMLElement {
   // Make sure there is a div for us to render into
@@ -17,7 +18,12 @@ function domElementGetter(): HTMLElement {
 }
 
 if (process.env.NODE_ENV === `development`) {
-  ReactDOM.render(<App />, document.getElementById('demo_plugin'));
+  ReactDOM.render(
+    <TestBedComponent pluginName="Demo Plugin">
+      <App />
+    </TestBedComponent>,
+    document.getElementById('demo_plugin')
+  );
 }
 
 const reactLifecycles = singleSpaReact({
