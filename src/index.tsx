@@ -34,11 +34,12 @@ export function bootstrap(props: any): Promise<void> {
   // this is an example of a message being fired back to the
   // parent and should be updated as part of the navigation story
   const action = {
-    type: 'REGISTER_ROUTE',
+    type: 'daaas:api:registerroute',
     payload: {
       section: 'Data',
       link: '/plugin1',
       plugin: 'demo_plugin',
+      displayName: 'Demo Plugin',
     },
   };
   document.dispatchEvent(new CustomEvent('daaas-frontend', { detail: action }));
