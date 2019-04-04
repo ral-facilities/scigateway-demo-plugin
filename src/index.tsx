@@ -27,23 +27,35 @@ const reactLifecycles = singleSpaReact({
   domElementGetter,
 });
 
+// this is an example of a message being fired back to the parent
+const action = {
+  type: 'daaas:api:register_route',
+  payload: {
+    section: 'Data',
+    link: '/plugin1',
+    plugin: 'demo_plugin',
+    displayName: 'Demo Plugin',
+    order: 10,
+  },
+};
+document.dispatchEvent(new CustomEvent('daaas-frontend', { detail: action }));
+
+const action2 = {
+  type: 'daaas:api:register_route',
+  payload: {
+    section: 'Analysis',
+    link: '/plugin1/analysis',
+    plugin: 'demo_plugin',
+    displayName: 'Demo Plugin Analysis',
+    order: 4,
+  },
+};
+document.dispatchEvent(new CustomEvent('daaas-frontend', { detail: action2 }));
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // Single-SPA bootstrap methods have no idea what type of inputs may be
 // pushed down from the parent app
 export function bootstrap(props: any): Promise<void> {
-  // this is an example of a message being fired back to the
-  // parent and should be updated as part of the navigation story
-  const action = {
-    type: 'daaas:api:registerroute',
-    payload: {
-      section: 'Data',
-      link: '/plugin1',
-      plugin: 'demo_plugin',
-      displayName: 'Demo Plugin',
-    },
-  };
-  document.dispatchEvent(new CustomEvent('daaas-frontend', { detail: action }));
-
   return reactLifecycles.bootstrap(props);
 }
 
