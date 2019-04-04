@@ -16,7 +16,10 @@
 module.exports = (webpackConfig, env, { paths }) => {
   // here you can extend your webpackConfig at will
 
-  console.log(webpackConfig)
+  webpackConfig.externals = {
+    'react': 'React', // Case matters here 
+    'react-dom': 'ReactDOM', // Case matters here
+  }
 
   if (env == "production") {
       webpackConfig.output.library = "demo_plugin"
@@ -27,11 +30,6 @@ module.exports = (webpackConfig, env, { paths }) => {
 
       delete webpackConfig.optimization.splitChunks
       webpackConfig.optimization.runtimeChunk = false
-
-      // webpackConfig.externals = {
-      //     'react': 'React', // Case matters here 
-      //     'react-dom' : 'ReactDOM', // Case matters here 
-      // }
   }
 
   return webpackConfig
