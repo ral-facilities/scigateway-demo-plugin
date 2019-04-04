@@ -5,7 +5,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const styles = (): StyleRules => ({
   root: {
