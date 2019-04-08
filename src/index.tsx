@@ -11,8 +11,6 @@ function domElementGetter(): HTMLElement {
   let el = document.getElementById('demo_plugin');
   if (!el) {
     el = document.createElement('div');
-    el.id = 'demo_plugin';
-    document.body.appendChild(el);
   }
 
   return el;
@@ -61,6 +59,14 @@ const action2 = {
   },
 };
 document.dispatchEvent(new CustomEvent('daaas-frontend', { detail: action2 }));
+
+window.addEventListener('single-spa:routing-event', () => {
+  // attempt to re-render the plugin if the corresponding div is present
+  let el = document.getElementById('demo_plugin');
+  if (el) {
+    ReactDOM.render(<App />, document.getElementById('demo_plugin'));
+  }
+});
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // Single-SPA bootstrap methods have no idea what type of inputs may be
