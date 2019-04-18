@@ -5,32 +5,8 @@ import App from './App';
 import singleSpaReact from 'single-spa-react';
 import TestBedComponent from './testbed/testbed.component';
 import * as log from 'loglevel';
-
-// Connect plugin to WebSockeet backend server
-const ws = new WebSocket('ws://localhost:3210/', ['json']);
-
-ws.addEventListener('message', event => {
-  const data = JSON.parse(event.data);
-  log.info(`Received notification from WebSocket to dispatch ${data.message}`);
-  const action = {
-    type: 'daaas:api:notification',
-    payload: {
-      id: data.id,
-      message: data.message,
-    },
-  };
-  document.dispatchEvent(new CustomEvent('daaas-frontend', { detail: action }));
-});
-
-function domElementGetter(): HTMLElement {
-  // Make sure there is a div for us to render into
-  let el = document.getElementById('demo_plugin');
-  if (!el) {
-    el = document.createElement('div');
-  }
-
-  return el;
-}
+import { createRoute } from './routes';
+import { createWebsocketClient } from './websocket';
 
 if (process.env.NODE_ENV === `development`) {
   ReactDOM.render(
@@ -44,6 +20,18 @@ if (process.env.NODE_ENV === `development`) {
   log.setDefaultLevel(log.levels.ERROR);
 }
 
+function domElementGetter(): HTMLElement {
+  // Make sure there is a div for us to render into
+  let el = document.getElementById('demo_plugin');
+  if (!el) {
+    el = document.createElement('div');
+  }
+  return el;
+}
+
+// Create WebSocket client to respond to listen for pushed notifications
+createWebsocketClient('ws://localhost:3210/');
+
 const reactLifecycles = singleSpaReact({
   React,
   ReactDOM,
@@ -52,33 +40,8 @@ const reactLifecycles = singleSpaReact({
 });
 
 // these are examples of route registration events being fired back to the parent
-const routeOneAction = {
-  type: 'daaas:api:register_route',
-  payload: {
-    section: 'Data',
-    link: '/plugin1',
-    plugin: 'demo_plugin',
-    displayName: 'Demo Plugin',
-    order: 10,
-  },
-};
-document.dispatchEvent(
-  new CustomEvent('daaas-frontend', { detail: routeOneAction })
-);
-
-const routeTwoAction = {
-  type: 'daaas:api:register_route',
-  payload: {
-    section: 'Analysis',
-    link: '/plugin1/analysis',
-    plugin: 'demo_plugin',
-    displayName: 'Demo Plugin Analysis',
-    order: 4,
-  },
-};
-document.dispatchEvent(
-  new CustomEvent('daaas-frontend', { detail: routeTwoAction })
-);
+createRoute('Data', 'Demo Plugin', '/plugin1', 10);
+createRoute('Analysis', 'Demo Plugin Analysis', '/plugin1/analysis', 4);
 
 window.addEventListener('single-spa:routing-event', () => {
   // attempt to re-render the plugin if the corresponding div is present
