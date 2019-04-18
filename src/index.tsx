@@ -51,8 +51,8 @@ const reactLifecycles = singleSpaReact({
   domElementGetter,
 });
 
-// this is an example of a message being fired back to the parent
-const action = {
+// these are examples of route registration events being fired back to the parent
+const routeOneAction = {
   type: 'daaas:api:register_route',
   payload: {
     section: 'Data',
@@ -62,9 +62,11 @@ const action = {
     order: 10,
   },
 };
-document.dispatchEvent(new CustomEvent('daaas-frontend', { detail: action }));
+document.dispatchEvent(
+  new CustomEvent('daaas-frontend', { detail: routeOneAction })
+);
 
-const action2 = {
+const routeTwoAction = {
   type: 'daaas:api:register_route',
   payload: {
     section: 'Analysis',
@@ -74,7 +76,9 @@ const action2 = {
     order: 4,
   },
 };
-document.dispatchEvent(new CustomEvent('daaas-frontend', { detail: action2 }));
+document.dispatchEvent(
+  new CustomEvent('daaas-frontend', { detail: routeTwoAction })
+);
 
 window.addEventListener('single-spa:routing-event', () => {
   // attempt to re-render the plugin if the corresponding div is present
