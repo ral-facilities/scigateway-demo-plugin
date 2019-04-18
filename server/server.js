@@ -14,6 +14,25 @@ function sendMessage(wss, message) {
   );
 }
 
+// patch missing CTRL+C handling on Windows platforms
+if (process.platform === 'win32') {
+  require('readline')
+    .createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    })
+    .on('SIGINT', function() {
+      process.emit('SIGINT');
+    });
+}
+
+process.on('SIGINT', function() {
+  // graceful shutdown
+  console.log('Shutting down');
+  expressWs.getWss().close();
+  process.exit();
+});
+
 // Add middleware to handle message body
 app.use(bodyParser.json());
 
