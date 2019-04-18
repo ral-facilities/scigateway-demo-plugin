@@ -6,6 +6,22 @@ import singleSpaReact from 'single-spa-react';
 import TestBedComponent from './testbed/testbed.component';
 import * as log from 'loglevel';
 
+// Connect plugin to WebSockeet backend server
+const ws = new WebSocket('ws://localhost:3210/', ['json']);
+
+ws.addEventListener('message', event => {
+  const data = JSON.parse(event.data);
+  log.info(`Received notification from WebSocket to dispatch ${data.message}`);
+  const action = {
+    type: 'daaas:api:notification',
+    payload: {
+      id: data.id,
+      message: data.message,
+    },
+  };
+  document.dispatchEvent(new CustomEvent('daaas-frontend', { detail: action }));
+});
+
 function domElementGetter(): HTMLElement {
   // Make sure there is a div for us to render into
   let el = document.getElementById('demo_plugin');

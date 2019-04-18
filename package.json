@@ -11,13 +11,16 @@
     "@types/react": "16.8.8",
     "@types/react-dom": "16.8.3",
     "@types/single-spa-react": "^2.8.3",
+    "express": "^4.16.4",
+    "express-ws": "^4.0.0",
     "loglevel": "^1.6.1",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-json-pretty": "^2.1.0",
     "react-scripts": "2.1.8",
     "single-spa-react": "^2.9.0",
-    "typescript": "3.3.4000"
+    "typescript": "3.3.4000",
+    "ws": "^6.2.1"
   },
   "lint-staged": {
     "src/**/*.{tsx,js,jsx,json}": [
@@ -43,6 +46,7 @@
     "test": "react-scripts test --env=jsdom --coverage",
     "test:watch": "react-scripts test --env=jsdom --watch",
     "serve:build": "npm run build & serve -l 5001 build",
+    "serve:backend": "node server/server.js",
     "analyze": "npm run build & source-map-explorer build/main.*",
     "eject": "react-scripts eject"
   },
