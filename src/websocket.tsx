@@ -14,6 +14,7 @@ export function createWebsocketClient(url: string): WebSocket {
       payload: {
         id: data.id,
         message: data.message,
+        severity: data.severity,
       },
     };
     document.dispatchEvent(
