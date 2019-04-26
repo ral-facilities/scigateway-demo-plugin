@@ -9,11 +9,14 @@ export function createWebsocketClient(url: string): WebSocket {
     log.info(
       `Received notification from WebSocket to dispatch ${data.message}`
     );
+    console.log(
+      `Received notification from WebSocket to dispatch ${data.message}`
+    );
     const action = {
       type: 'daaas:api:notification',
       payload: {
-        id: data.id,
         message: data.message,
+        severity: data.severity,
       },
     };
     document.dispatchEvent(

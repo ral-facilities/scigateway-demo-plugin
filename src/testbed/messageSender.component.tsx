@@ -39,6 +39,13 @@ const exampleMessages = {
   TEST: {},
 };
 
+const exampleNotification = {
+  ADD_NOTIFICATIONS_PAYLOAD: {
+    severity: 'warning',
+    message: 'plugin was successfully loaded',
+  },
+};
+
 class MessageSenderComponent extends React.Component<
   WithStyles<typeof styles>,
   MessageSenderComponentState,
