@@ -52,19 +52,55 @@ const action2 = {
   type: 'daaas:api:register_route',
   payload: {
     section: 'Analysis',
-    link: '/plugin1/analysis',
-    plugin: 'demo_plugin',
+    link: '/plugin2/analysis',
+    plugin: 'demo_plugin2',
     displayName: 'Demo Plugin Analysis',
-    order: 4,
+    order: 0,
   },
 };
 document.dispatchEvent(new CustomEvent('daaas-frontend', { detail: action2 }));
 
-window.addEventListener('single-spa:routing-event', () => {
-  // attempt to re-render the plugin if the corresponding div is present
+const action3 = {
+  type: 'daaas:api:register_route',
+  payload: {
+    section: 'Analysis',
+    link: '/plugin2/analysis',
+    plugin: 'demo_plugin2',
+    displayName: 'Demo Plugin Analysis 3',
+    order: 2,
+  },
+};
+document.dispatchEvent(new CustomEvent('daaas-frontend', { detail: action3 }));
+
+const action4 = {
+  type: 'daaas:api:register_route',
+  payload: {
+    section: 'Analysis',
+    link: '/plugin2/analysis',
+    plugin: 'demo_plugin2',
+    displayName: 'Demo Plugin Analysis 4',
+    order: 4,
+  },
+};
+document.dispatchEvent(new CustomEvent('daaas-frontend', { detail: action4 }));
+
+const render = () => {
   let el = document.getElementById('demo_plugin');
   if (el) {
     ReactDOM.render(<App />, document.getElementById('demo_plugin'));
+  }
+};
+
+window.addEventListener('single-spa:routing-event', () => {
+  // attempt to re-render the plugin if the corresponding div is present
+  render();
+});
+
+document.addEventListener('daaas-frontend', e => {
+  // attempt to re-render the plugin if the corresponding div is present
+  const action = (e as CustomEvent).detail;
+  if (action.type === 'daaas:api:plugin_rerender') {
+    render();
   }
 });
 
