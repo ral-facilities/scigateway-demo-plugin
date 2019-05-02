@@ -43,11 +43,23 @@ const reactLifecycles = singleSpaReact({
 createRoute('Data', 'Demo Plugin', '/plugin1', 10);
 createRoute('Analysis', 'Demo Plugin Analysis', '/plugin1/analysis', 4);
 
-window.addEventListener('single-spa:routing-event', () => {
-  // attempt to re-render the plugin if the corresponding div is present
+const render = () => {
   let el = document.getElementById('demo_plugin');
   if (el) {
     ReactDOM.render(<App />, document.getElementById('demo_plugin'));
+  }
+};
+
+window.addEventListener('single-spa:routing-event', () => {
+  // attempt to re-render the plugin if the corresponding div is present
+  render();
+});
+
+document.addEventListener('daaas-frontend', e => {
+  // attempt to re-render the plugin if the corresponding div is present
+  const action = (e as CustomEvent).detail;
+  if (action.type === 'daaas:api:plugin_rerender') {
+    render();
   }
 });
 
