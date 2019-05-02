@@ -43,42 +43,6 @@ const reactLifecycles = singleSpaReact({
 createRoute('Data', 'Demo Plugin', '/plugin1', 10);
 createRoute('Analysis', 'Demo Plugin Analysis', '/plugin1/analysis', 4);
 
-const action2 = {
-  type: 'daaas:api:register_route',
-  payload: {
-    section: 'Analysis',
-    link: '/plugin2/analysis',
-    plugin: 'demo_plugin2',
-    displayName: 'Demo Plugin Analysis',
-    order: 0,
-  },
-};
-document.dispatchEvent(new CustomEvent('daaas-frontend', { detail: action2 }));
-
-const action3 = {
-  type: 'daaas:api:register_route',
-  payload: {
-    section: 'Analysis',
-    link: '/plugin2/analysis',
-    plugin: 'demo_plugin2',
-    displayName: 'Demo Plugin Analysis 3',
-    order: 2,
-  },
-};
-document.dispatchEvent(new CustomEvent('daaas-frontend', { detail: action3 }));
-
-const action4 = {
-  type: 'daaas:api:register_route',
-  payload: {
-    section: 'Analysis',
-    link: '/plugin2/analysis',
-    plugin: 'demo_plugin2',
-    displayName: 'Demo Plugin Analysis 4',
-    order: 4,
-  },
-};
-document.dispatchEvent(new CustomEvent('daaas-frontend', { detail: action4 }));
-
 const render = () => {
   let el = document.getElementById('demo_plugin');
   if (el) {
