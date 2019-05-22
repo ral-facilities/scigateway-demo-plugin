@@ -40,8 +40,14 @@ const reactLifecycles = singleSpaReact({
 });
 
 // these are examples of route registration events being fired back to the parent
-createRoute('Data', 'Demo Plugin', '/plugin1', 10);
-createRoute('Analysis', 'Demo Plugin Analysis', '/plugin1/analysis', 4);
+createRoute('Data', 'Demo Plugin', '/plugin1', 10, 'Data help text');
+createRoute(
+  'Analysis',
+  'Demo Plugin Analysis',
+  '/plugin1/analysis',
+  4,
+  'Analysis help text'
+);
 
 const render = () => {
   let el = document.getElementById('demo_plugin');
