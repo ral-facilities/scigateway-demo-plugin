@@ -2,7 +2,8 @@ export function createRoute(
   section: string,
   label: string,
   route: string,
-  order: number
+  order: number,
+  helpText: string
 ): void {
   const routeAction = {
     type: 'daaas:api:register_route',
@@ -12,6 +13,7 @@ export function createRoute(
       plugin: 'demo_plugin',
       displayName: label,
       order: order,
+      helpText: helpText,
     },
   };
   document.dispatchEvent(
