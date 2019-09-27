@@ -61,10 +61,10 @@ window.addEventListener('single-spa:routing-event', () => {
   render();
 });
 
-document.addEventListener('daaas-frontend', e => {
+document.addEventListener('scigateway', e => {
   // attempt to re-render the plugin if the corresponding div is present
   const action = (e as CustomEvent).detail;
-  if (action.type === 'daaas:api:plugin_rerender') {
+  if (action.type === 'scigateway:api:plugin_rerender') {
     render();
   }
 });

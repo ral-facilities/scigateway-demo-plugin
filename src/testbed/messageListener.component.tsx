@@ -37,7 +37,7 @@ class MessageListenerComponent extends React.Component<
       data: '{}',
     };
 
-    document.addEventListener('daaas-frontend', event => {
+    document.addEventListener('scigateway', event => {
       const updatedMessages = [...this.state.messages];
       updatedMessages.push((event as CustomEvent).detail);
       if (updatedMessages.length > 10) {
