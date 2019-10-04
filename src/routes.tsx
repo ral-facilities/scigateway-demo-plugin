@@ -6,7 +6,7 @@ export function createRoute(
   helpText: string
 ): void {
   const routeAction = {
-    type: 'daaas:api:register_route',
+    type: 'scigateway:api:register_route',
     payload: {
       section: section,
       link: route,
@@ -17,6 +17,6 @@ export function createRoute(
     },
   };
   document.dispatchEvent(
-    new CustomEvent('daaas-frontend', { detail: routeAction })
+    new CustomEvent('scigateway', { detail: routeAction })
   );
 }

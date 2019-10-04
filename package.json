@@ -1,5 +1,5 @@
 {
-  "name": "daaas-frontend-demo-plugin",
+  "name": "scigateway-demo-plugin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

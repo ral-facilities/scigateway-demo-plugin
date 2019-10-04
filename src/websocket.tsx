@@ -10,16 +10,14 @@ export function createWebsocketClient(url: string): WebSocket {
       `Received notification from WebSocket to dispatch ${data.message}`
     );
     const action = {
-      type: 'daaas:api:notification',
+      type: 'scigateway:api:notification',
       payload: {
         id: data.id,
         message: data.message,
         severity: data.severity,
       },
     };
-    document.dispatchEvent(
-      new CustomEvent('daaas-frontend', { detail: action })
-    );
+    document.dispatchEvent(new CustomEvent('scigateway', { detail: action }));
   });
 
   return ws;

@@ -94,8 +94,8 @@ class App extends Component<{}, { hasError: boolean }> {
                   type="button"
                   onClick={() => {
                     document.dispatchEvent(
-                      new CustomEvent('daaas-frontend', {
-                        detail: { type: 'daaas:api:invalidate_token' },
+                      new CustomEvent('scigateway', {
+                        detail: { type: 'scigateway:api:invalidate_token' },
                       })
                     );
                   }}

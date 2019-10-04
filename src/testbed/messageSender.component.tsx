@@ -64,9 +64,7 @@ class MessageSenderComponent extends React.Component<
       type: this.state.typeOfMessage,
       payload,
     };
-    document.dispatchEvent(
-      new CustomEvent('daaas-frontend', { detail: message })
-    );
+    document.dispatchEvent(new CustomEvent('scigateway', { detail: message }));
   };
 
   public render(): React.ReactElement {
