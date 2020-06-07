@@ -94,7 +94,7 @@
     "lint-staged": "^9.2.1",
     "prettier": "^1.18.2",
     "react-scripts-rewired": "3.0.1--latest1",
-    "serve": "^11.1.0",
+    "serve": "^11.3.2",
     "source-map-explorer": "^2.0.1"
   }
 }
