@@ -4,7 +4,7 @@ export function createWebsocketClient(url: string): WebSocket {
   // Connect plugin to WebSocket backend server
   const ws = new WebSocket(url, ['json']);
 
-  ws.addEventListener('message', event => {
+  ws.addEventListener('message', (event) => {
     const data = JSON.parse(event.data);
     log.info(
       `Received notification from WebSocket to dispatch ${data.message}`

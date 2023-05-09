@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/node_modules_old
 
 # testing
 /coverage
@@ -11,6 +12,7 @@ junit.xml
 
 # production
 /build
+/build-old
 
 # misc
 .DS_Store

@@ -1,30 +1,14 @@
 import React from 'react';
-import { withStyles, WithStyles, StyleRules } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
+import { Card, CardHeader, CardContent, styled, Box } from '@mui/material';
 import MessageListenerComponent from './messageListener.component';
 import MessageSenderComponent from './messageSender.component';
 
-const styles = (): StyleRules => ({
-  root: {
-    display: 'flex',
-    background: '#aaa',
-    padding: 20,
-    flexDirection: 'column' as 'column',
-    minHeight: '100vh',
-  },
-  card: {
-    width: '100%',
-  },
-  content: {
-    margin: 5,
-    border: '1px dashed black',
-  },
-  tools: {
-    display: 'flex',
-    marginTop: 10,
-  },
+const StyledDiv = styled('div')({
+  display: 'flex',
+  background: '#aaa',
+  padding: 20,
+  flexDirection: 'column',
+  minHeight: '100vh',
 });
 
 interface TestBedComponentProps {
@@ -32,24 +16,22 @@ interface TestBedComponentProps {
   children?: React.ReactElement;
 }
 
-type CombinedTestBedProps = TestBedComponentProps & WithStyles<typeof styles>;
-
-const TestBedComponent = (props: CombinedTestBedProps): React.ReactElement => (
-  <div className={props.classes.root}>
-    <Card className={props.classes.card}>
+const TestBedComponent = (props: TestBedComponentProps): React.ReactElement => (
+  <StyledDiv>
+    <Card sx={{ width: '100%' }}>
       <CardHeader
         title={props.pluginName}
         subheader="Mounted in plugin testbed"
       />
-      <CardContent className={props.classes.content}>
+      <CardContent sx={{ margin: 5, border: '1px dashed black' }}>
         {props.children}
       </CardContent>
     </Card>
-    <div className={props.classes.tools}>
+    <Box sx={{ display: 'flex', marginTop: 10 }}>
       <MessageListenerComponent />
       <MessageSenderComponent />
-    </div>
-  </div>
+    </Box>
+  </StyledDiv>
 );
 
-export default withStyles(styles)(TestBedComponent);
+export default TestBedComponent;

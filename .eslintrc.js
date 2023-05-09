@@ -7,10 +7,11 @@ module.exports = {
     node: true,
   },
   extends: [
+    'react-app',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier',
-    'prettier/@typescript-eslint',
+    'plugin:cypress/recommended',
   ],
   plugins: ['prettier', 'cypress'],
   rules: {
@@ -21,17 +22,27 @@ module.exports = {
       {
         singleQuote: true,
         trailingComma: 'es5',
+        endOfLine: 'auto',
       },
     ],
-    'ter-indent': [true, 2],
-    '@typescript-eslint/explicit-function-return-type': [
-      'warning',
-      {
-        allowExpressions: true,
-        allowTypedFunctionExpressions: true,
-      },
-    ],
+    // disable for all files - this means we can have plain JS files not causing errors
+    '@typescript-eslint/explicit-function-return-type': 'off',
   },
+  overrides: [
+    {
+      // and enable again specifically for TS files
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': [
+          'error',
+          {
+            allowExpressions: true,
+            allowTypedFunctionExpressions: true,
+          },
+        ],
+      },
+    },
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
