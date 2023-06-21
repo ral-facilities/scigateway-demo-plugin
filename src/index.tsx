@@ -9,12 +9,15 @@ import { createRoute } from './routes';
 import { createWebsocketClient } from './websocket';
 
 if (process.env.NODE_ENV === `development`) {
-  ReactDOM.render(
-    <TestBedComponent pluginName="Demo Plugin">
-      <App />
-    </TestBedComponent>,
-    document.getElementById('demo_plugin')
-  );
+  const el = document.getElementById('demo_plugin');
+  if (el) {
+    ReactDOM.render(
+      <TestBedComponent pluginName="Demo Plugin">
+        <App />
+      </TestBedComponent>,
+      document.getElementById('demo_plugin')
+    );
+  }
   log.setDefaultLevel(log.levels.DEBUG);
 } else {
   log.setDefaultLevel(log.levels.ERROR);
@@ -67,27 +70,6 @@ createRoute(
   4,
   'Analysis help text'
 );
-
-const render = (): void => {
-  const el = document.getElementById('demo_plugin');
-  if (el) {
-    ReactDOM.render(<App />, document.getElementById('demo_plugin'));
-  }
-};
-
-window.addEventListener('single-spa:routing-event', () => {
-  // attempt to re-render the plugin if the corresponding div is present
-  render();
-});
-
-document.addEventListener('scigateway', (e) => {
-  // attempt to re-render the plugin if the corresponding div is present
-  const action = (e as CustomEvent).detail;
-  if (action.type === 'scigateway:api:plugin_rerender') {
-    console.log('rerendering...');
-    render();
-  }
-});
 
 // Single-SPA bootstrap methods have no idea what type of inputs may be
 // pushed down from the parent app

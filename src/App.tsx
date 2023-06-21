@@ -8,6 +8,27 @@ import {
 } from 'react-router-dom';
 
 const App: React.FC = () => {
+  // we need to call forceUpdate if SciGateway tells us to rerender
+  // but there's no forceUpdate in functional components, so this is the hooks equivalent
+  // see https://reactjs.org/docs/hooks-faq.html#is-there-something-like-forceupdate
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, forceUpdate] = React.useReducer((x) => x + 1, 0);
+
+  function handler(e: Event): void {
+    // attempt to re-render the plugin if we get told to
+    const action = (e as CustomEvent).detail;
+    if ('scigateway:api:plugin_rerender'.match(action)) {
+      forceUpdate();
+    }
+  }
+
+  React.useEffect(() => {
+    document.addEventListener('scigateway', handler);
+    return () => {
+      document.removeEventListener('scigateway', handler);
+    };
+  }, []);
+
   return (
     <Router>
       <div className="App">

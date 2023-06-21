@@ -6,6 +6,15 @@
 .pnp.js
 /node_modules_old
 
+# yarn 2
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
 # testing
 /coverage
 junit.xml
