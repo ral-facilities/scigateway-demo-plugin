@@ -39,7 +39,7 @@ const reactLifecycles = singleSpaReact({
   React,
   ReactDOM,
   renderType: 'render',
-  rootComponent: App,
+  rootComponent: () => document.getElementById('demo_plugin') ? <App /> : null,
   domElementGetter,
   errorBoundary: (error): React.ReactElement => {
     log.error(`demo_plugin failed with error: ${error}`);
