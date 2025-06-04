@@ -3,14 +3,14 @@ import React from 'react';
 import ReactDOMClient from 'react-dom/client';
 import singleSpaReact from 'single-spa-react';
 import App from './App';
-import './index.css';
+import './main.css';
 import { createRoute } from './routes';
 import TestBedComponent from './testbed/testbed.component';
 import { createWebsocketClient } from './websocket';
 
 export const pluginName = 'demo_plugin';
 
-if (process.env.NODE_ENV === `development`) {
+const render = (): void => {
   const el = document.getElementById(pluginName);
   if (el) {
     const root = ReactDOMClient.createRoot(el);
@@ -20,10 +20,7 @@ if (process.env.NODE_ENV === `development`) {
       </TestBedComponent>
     );
   }
-  log.setDefaultLevel(log.levels.DEBUG);
-} else {
-  log.setDefaultLevel(log.levels.ERROR);
-}
+};
 
 function domElementGetter(): HTMLElement {
   // Make sure there is a div for us to render into
@@ -113,4 +110,11 @@ export function unmount(props: unknown): Promise<void> {
     .catch((error: Error) => {
       log.error(`${pluginName} failed whilst unmounting: ${error}`);
     });
+}
+
+if (import.meta.env.DEV) {
+  render();
+  log.setDefaultLevel(log.levels.DEBUG);
+} else {
+  log.setDefaultLevel(log.levels.ERROR);
 }

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
   "dependencies": {
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.0",
@@ -49,7 +52,7 @@
     "test": "vitest --coverage",
     "serve:build": "yarn build && serve -l 5001 dist",
     "serve:backend": "node server/server.js",
-    "analyze": "yarn build && source-map-explorer dist/main.*",
+    "analyze": "yarn dlx vite-bundle-visualizer",
     "postinstall": "husky"
   },
   "browserslist": [
