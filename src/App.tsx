@@ -42,6 +42,9 @@ const App: React.FC = () => {
                 <Link to="/plugin1">/plugin1</Link>
               </li>
               <li>
+                <Link to="/plugin2">/plugin2</Link>
+              </li>
+              <li>
                 <Link to="/plugin1/analysis/">/plugin1/analysis</Link>
               </li>
               <li>
@@ -59,6 +62,7 @@ const App: React.FC = () => {
           </nav>
           <Routes>
             <Route path="/plugin1" element={<h2>/plugin1</h2>} />
+            <Route path="/plugin2" element={<h2>/plugin2</h2>} />
             <Route
               path="/plugin1/analysis/"
               element={<h2>/plugin1/analysis</h2>}

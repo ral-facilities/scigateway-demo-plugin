@@ -71,6 +71,14 @@ createRoute(
   4,
   'Analysis help text'
 );
+createRoute(
+  'Data',
+  'Unauthorised',
+  '/plugin2',
+  15,
+  'Unauthorised help text',
+  true
+);
 
 // Single-SPA bootstrap methods have no idea what type of inputs may be
 // pushed down from the parent app
