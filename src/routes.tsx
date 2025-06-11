@@ -3,7 +3,8 @@ export function createRoute(
   label: string,
   route: string,
   order: number,
-  helpText: string
+  helpText: string,
+  unauthorised?: boolean
 ): void {
   const routeAction = {
     type: 'scigateway:api:register_route',
@@ -14,6 +15,7 @@ export function createRoute(
       displayName: label,
       order: order,
       helpText: helpText,
+      unauthorised: unauthorised,
     },
   };
   document.dispatchEvent(

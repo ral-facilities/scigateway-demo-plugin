@@ -2,32 +2,33 @@
   "name": "scigateway-demo-plugin",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
   "dependencies": {
-    "@craco/craco": "7.0.0",
-    "@emotion/react": "11.10.0",
-    "@emotion/styled": "11.10.0",
-    "@mui/icons-material": "5.11.0",
-    "@mui/material": "5.11.0",
-    "@types/jest": "29.4.0",
-    "@types/node": "18.11.9",
-    "@types/react": "17.0.39",
-    "@types/react-dom": "17.0.11",
-    "express": "4.18.1",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.0",
+    "@mui/icons-material": "7.1.1",
+    "@mui/material": "7.1.1",
+    "@types/node": "22.14.0",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "@vitejs/plugin-react": "4.4.1",
+    "express": "4.20.0",
     "express-ws": "5.0.2",
-    "loglevel": "1.8.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "loglevel": "1.9.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-json-pretty": "2.2.0",
-    "react-router-dom": "5.3.0",
-    "react-scripts": "5.0.0",
-    "single-spa-react": "4.6.1",
-    "typescript": "4.9.3",
+    "react-router": "7.6.2",
+    "single-spa-react": "5.0.1",
+    "typescript": "5.6.2",
+    "vite": "6.3.5",
     "ws": "8.13.0"
   },
   "resolutions": {
-    "@types/react": "17.0.39",
-    "@typescript-eslint/eslint-plugin": "5.49.0",
-    "@typescript-eslint/parser": "5.49.0"
+    "@types/react": "18.3.3"
   },
   "lint-staged": {
     "src/**/*.{tsx,js,jsx,json}": [
@@ -41,56 +42,39 @@
       "git add"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "scripts": {
-    "lint:js": "eslint --ext=tsx --ext=js --ext=jsx --fix ./src",
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test --env=jsdom --coverage --watchAll=false",
-    "test:watch": "craco test --env=jsdom --watch",
-    "serve:build": "yarn build && serve -l 5001 build",
+    "lint": "eslint --max-warnings=0 --fix ./src && tsc --noEmit -p tsconfig.build.json",
+    "dev": "vite --open",
+    "build": "tsc --project tsconfig.build.json && vite build",
+    "preview": "vite preview",
+    "preview:build": "yarn build && yarn preview",
+    "preview:build:dev": "yarn build --watch & yarn preview",
+    "test": "vitest --coverage",
+    "serve:build": "yarn build && serve -l 5001 dist",
     "serve:backend": "node server/server.js",
-    "analyze": "yarn build && source-map-explorer build/main.*",
-    "postinstall": "husky install",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "analyze": "yarn dlx vite-bundle-visualizer",
+    "postinstall": "husky"
   },
   "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
+    "defaults"
   ],
-  "jest": {
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.{tsx,js,jsx}",
-      "!src/index.tsx",
-      "!src/serviceWorker.ts",
-      "!src/setupTests.js",
-      "!src/testbed/**/*"
-    ]
-  },
   "devDependencies": {
-    "@types/react-router-dom": "5.3.3",
-    "@typescript-eslint/eslint-plugin": "5.49.0",
-    "@typescript-eslint/parser": "5.49.0",
-    "eslint": "8.32.0",
-    "eslint-config-prettier": "8.6.0",
-    "eslint-config-react-app": "7.0.0",
-    "eslint-plugin-cypress": "2.12.1",
-    "eslint-plugin-prettier": "4.2.1",
-    "husky": "8.0.1",
-    "lint-staged": "13.1.0",
-    "prettier": "2.8.0",
-    "serve": "14.2.0"
+    "@vitest/coverage-v8": "3.2.0",
+    "browserslist": "4.24.4",
+    "browserslist-to-esbuild": "2.1.1",
+    "eslint": "9.28.0",
+    "eslint-config-prettier": "10.1.1",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint-plugin-prettier": "5.2.1",
+    "eslint-plugin-react": "7.37.2",
+    "eslint-plugin-react-hooks": "5.2.0",
+    "globals": "16.0.0",
+    "husky": "9.1.1",
+    "jsdom": "26.0.0",
+    "lint-staged": "13.3.0",
+    "prettier": "3.5.0",
+    "serve": "14.2.0",
+    "typescript-eslint": "8.33.1",
+    "vitest": "3.2.0"
   }
 }
