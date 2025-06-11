@@ -4408,12 +4408,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:9.1.1":
-  version: 9.1.1
-  resolution: "husky@npm:9.1.1"
+"husky@npm:9.1.7":
+  version: 9.1.7
+  resolution: "husky@npm:9.1.7"
   bin:
     husky: bin.js
-  checksum: d907eee996353b0b6da8e40b6cf6c1274d57470cd984f028a8baf3e17b7bbab57d796345d552971c6629521685297a1ee093128e4bd45c8fc1867c0dbf38086b
+  checksum: c2412753f15695db369634ba70f50f5c0b7e5cb13b673d0826c411ec1bd9ddef08c1dad89ea154f57da2521d2605bd64308af748749b27d08c5f563bcd89975f
   languageName: node
   linkType: hard
 
@@ -6774,7 +6774,7 @@ __metadata:
     express: 4.20.0
     express-ws: 5.0.2
     globals: 16.0.0
-    husky: 9.1.1
+    husky: 9.1.7
     jsdom: 26.0.0
     lint-staged: 13.3.0
     loglevel: 1.9.1
