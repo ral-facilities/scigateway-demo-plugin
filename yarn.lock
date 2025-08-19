@@ -6784,7 +6784,7 @@ __metadata:
     react-json-pretty: 2.2.0
     react-router: 7.6.2
     serve: 14.2.0
-    single-spa-react: 5.0.1
+    single-spa-react: 6.0.2
     typescript: 5.6.2
     typescript-eslint: 8.33.1
     vite: 6.3.5
@@ -7067,9 +7067,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"single-spa-react@npm:5.0.1":
-  version: 5.0.1
-  resolution: "single-spa-react@npm:5.0.1"
+"single-spa-react@npm:6.0.2":
+  version: 6.0.2
+  resolution: "single-spa-react@npm:6.0.2"
   dependencies:
     browserslist-config-single-spa: ^1.0.1
   peerDependencies:
@@ -7081,7 +7081,7 @@ __metadata:
       optional: true
     "@types/react-dom":
       optional: true
-  checksum: fb0669e9c46808be6c47c6b74c4a1629c4755b7b087730ede03e3d0f665ee6067fd4401340f0dc8a232f5b1daf60896f8c1694415a85f29924ea6daf4fa64d08
+  checksum: 2ac52690e9b0304f7e67c22a5f6900fe31bb6919eefd3e7688d6ca8b105e60f5e701367a0e6a135a4fc2beab47a98db47d32fdca226a8d5518e9540fc80ca216
   languageName: node
   linkType: hard
 
